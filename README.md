@@ -27,12 +27,12 @@ Analyze sales data to identify top-performing products, monitor trends, segment 
 ## 3. JOIN Queries
 
 ### 3.1 INNER JOIN – Retrieve valid transactions
-```
+`
 SELECT s.sale_id, c.customer_name, p.product_name, r.region_name, s.sale_date, s.total_amount
 FROM sales s
 INNER JOIN customers c ON s.customer_id = c.customer_id
 INNER JOIN products p ON s.product_id = p.product_id
 INNER JOIN regions r ON s.region_id = r.region_id;
-```
+`
 
 
