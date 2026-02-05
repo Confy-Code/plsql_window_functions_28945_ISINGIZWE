@@ -26,12 +26,164 @@ Analyze sales data to identify top-performing products, monitor trends, segment 
 
 ## 3. JOIN Queries
 
-### 3.1 INNER JOIN – Retrieve valid transactions
+### 3.1 INNER JOIN:
+This retrives only valid transactions, that is to say between all three tables
+
     SELECT s.sale_id, c.customer_name, p.product_name, r.region_name, s.sale_date, s.total_amount
     FROM sales s
     INNER JOIN customers c ON s.customer_id = c.customer_id
     INNER JOIN products p ON s.product_id = p.product_id
     INNER JOIN regions r ON s.region_id = r.region_id;
 
+### 3.2 LEFT JOIN 
+In our case, this retrieved the customers who didn't buy anything(inactive customers)
+
+    SELECT c.customer_name, r.region_name
+    FROM customers c
+    LEFT JOIN sales s ON c.customer_id = s.customer_id
+    LEFT JOIN regions r ON c.region_id = r.region_id
+    WHERE s.sale_id IS NULL;
+
+## 3.3 RIGHT JOIN 
+In our case, this retrieved the unsold products were shown by this
+
+    SELECT p.product_name, s.sale_id
+    FROM sales s
+    RIGHT JOIN products p ON s.product_id = p.product_id
+    WHERE s.sale_id IS NULL;
+
+## 3.4 FULL OUTER JOIN
+This is like the union of both Left and Right joins
+
+    SELECT c.customer_name, p.product_name, s.sale_id
+    FROM customers c
+    FULL OUTER JOIN sales s ON c.customer_id = s.customer_id
+    FULL OUTER JOIN products p ON s.product_id = p.product_id;
+
+## 3.5 SELF JOIN 
+In our case, this showed those customers who are competing for the product in the same region
+
+    SELECT c1.customer_name AS customer_1, c2.customer_name AS customer_2, c1.region_id
+    FROM customers c1
+    JOIN customers c2
+        ON c1.region_id = c2.region_id
+       AND c1.customer_id < c2.customer_id;
+---
+
+## 4. Window Function Queries
+### 4.1 Ranking Functions
+These functions help us to inspect customers who generates high income for the business
+
+    SELECT c.customer_name,
+           SUM(s.total_amount) AS total_revenue,
+           ROW_NUMBER() OVER (ORDER BY SUM(s.total_amount) DESC) AS row_num,
+           RANK() OVER (ORDER BY SUM(s.total_amount) DESC) AS rank_val,
+           DENSE_RANK() OVER (ORDER BY SUM(s.total_amount) DESC) AS dense_rank_val,
+           PERCENT_RANK() OVER (ORDER BY SUM(s.total_amount) DESC) AS percent_rank
+    FROM sales s
+    JOIN customers c ON s.customer_id = c.customer_id
+    GROUP BY c.customer_name;
 
 
+### 4.2 Aggregate Functions
+These functions help us to highlight different trends across periods of time. In our case, we used monthly periods.
+
+
+    SELECT
+        DATE_TRUNC('month', sale_date) AS sale_month,
+        SUM(total_amount) AS monthly_sales,
+        
+        SUM(SUM(total_amount)) OVER (
+            ORDER BY DATE_TRUNC('month', sale_date)
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        ) AS running_total,
+    
+        AVG(SUM(total_amount)) OVER (
+            ORDER BY DATE_TRUNC('month', sale_date)
+            RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        ) AS avg_sales,
+    
+        MIN(SUM(total_amount)) OVER () AS min_monthly_sales,
+        MAX(SUM(total_amount)) OVER () AS max_monthly_sales
+    FROM sales
+    GROUP BY DATE_TRUNC('month', sale_date);
+
+### 4.3 Navigation window functions
+Functions such as LAG() and LEAD() manifests the month to month growth in revenues.
+
+    SELECT
+        DATE_TRUNC('month', sale_date) AS sale_month,
+        SUM(total_amount) AS monthly_sales,
+        
+        LAG(SUM(total_amount)) OVER (
+            ORDER BY DATE_TRUNC('month', sale_date)
+        ) AS previous_month_sales,
+    
+        LEAD(SUM(total_amount)) OVER (
+            ORDER BY DATE_TRUNC('month', sale_date)
+        ) AS next_month_sales
+    FROM sales
+    GROUP BY DATE_TRUNC('month', sale_date);
+
+### 4.4 Distribution functions
+Customers of the business in our case were divided into four quartiles, meaning depending on their level of spending.
+4 classes are:
+1 - High-level spenders
+2 - High mid-level spenders
+3 - Low mid-level spenders
+4 - Low-level spenders
+
+    SELECT
+        c.customer_name,
+        SUM(s.total_amount) AS total_spent,
+    
+        NTILE(4) OVER (
+            ORDER BY SUM(s.total_amount) DESC
+        ) AS spending_quartile,
+    
+        CUME_DIST() OVER (
+            ORDER BY SUM(s.total_amount) DESC
+        ) AS cumulative_distribution
+    FROM sales s
+    JOIN customers c ON s.customer_id = c.customer_id
+    GROUP BY c.customer_name;
+
+
+**5. Key Insights**
+#### 5.1 Descriptive — What happened?
+
+* Top products and top customers identified by region.
+* Monthly sales fluctuate with visible trends.
+* Some products had no sales; some customers were inactive.
+
+**5.2 Diagnostic — Why did it happen?**
+
+* Regional preferences and product popularity explain top-selling items.
+* Low or no sales for certain products suggest insufficient marketing or limited distribution.
+
+**5.3 Prescriptive — What should be done next?**
+
+* Target inactive customers with promotions.
+* Focus marketing on underperforming products.
+* Monitor monthly trends using running totals and moving averages for planning.
+* Segment high-value customers for loyalty programs.
+
+### References
+
+MySQL 8.0 Official Documentation – `https://dev.mysql.com/doc/`
+PostgreSQL Window Functions Tutorial – `https://www.postgresql.org/docs/current/tutorial-window.html`
+Oracle SQL Window Functions Guide – `Oracle Docs`
+Business Analytics with SQL – Tutorial and Examples, DataCamp
+Lecturer Eric M.'s Notes
+
+---
+All sources were properly cited. Implementation and analysis represent original work. No AI-generated content
+was copied without attribution or adaption
+
+
+
+
+    
+    
+    
+        
