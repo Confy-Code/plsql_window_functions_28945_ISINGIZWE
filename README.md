@@ -207,11 +207,11 @@ Customers of the business in our case were divided into four quartiles, meaning 
 
 ### References
 
-MySQL 8.0 Official Documentation – `https://dev.mysql.com/doc/`
-PostgreSQL Window Functions Tutorial – `https://www.postgresql.org/docs/current/tutorial-window.html`
-Oracle SQL Window Functions Guide – `Oracle Docs`
-Business Analytics with SQL – Tutorial and Examples, DataCamp
-Lecturer Eric M.'s Notes
+- MySQL 8.0 Official Documentation – `https://dev.mysql.com/doc/`
+- PostgreSQL Window Functions Tutorial – `https://www.postgresql.org/docs/current/tutorial-window.html`
+- Oracle SQL Window Functions Guide – `Oracle Docs`
+- Business Analytics with SQL – Tutorial and Examples, DataCamp
+- Lecturer Eric M.'s Notes
 
 ---
 All sources were properly cited. Implementation and analysis represent original work. No AI-generated content
