@@ -35,6 +35,9 @@ This retrives only valid transactions, that is to say between all three tables
     INNER JOIN products p ON s.product_id = p.product_id
     INNER JOIN regions r ON s.region_id = r.region_id;
 
+<img width="1199" height="393" alt="Inner join" src="https://github.com/user-attachments/assets/c02ddac0-96bc-463c-83e8-ecd383bd4a17" />
+
+
 ### 3.2 LEFT JOIN 
 In our case, this retrieved the customers who didn't buy anything(inactive customers)
 
@@ -44,6 +47,9 @@ In our case, this retrieved the customers who didn't buy anything(inactive custo
     LEFT JOIN regions r ON c.region_id = r.region_id
     WHERE s.sale_id IS NULL;
 
+
+<img width="551" height="167" alt="Left join" src="https://github.com/user-attachments/assets/33498487-e89f-4eda-a63c-f654ac3cfe78" />
+
 ## 3.3 RIGHT JOIN 
 In our case, this retrieved the unsold products were shown by this
 
@@ -51,6 +57,9 @@ In our case, this retrieved the unsold products were shown by this
     FROM sales s
     RIGHT JOIN products p ON s.product_id = p.product_id
     WHERE s.sale_id IS NULL;
+
+<img width="536" height="128" alt="Right join" src="https://github.com/user-attachments/assets/e6494a8e-44e7-4138-b200-7e944081d5c1" />
+
 
 ## 3.4 FULL OUTER JOIN
 This is like the union of both Left and Right joins
@@ -60,6 +69,9 @@ This is like the union of both Left and Right joins
     FULL OUTER JOIN sales s ON c.customer_id = s.customer_id
     FULL OUTER JOIN products p ON s.product_id = p.product_id;
 
+
+<img width="665" height="415" alt="Full outer join" src="https://github.com/user-attachments/assets/d3615c06-cb58-46e1-a3ce-817c15ec192a" />
+
 ## 3.5 SELF JOIN 
 In our case, this showed those customers who are competing for the product in the same region
 
@@ -68,6 +80,9 @@ In our case, this showed those customers who are competing for the product in th
     JOIN customers c2
         ON c1.region_id = c2.region_id
        AND c1.customer_id < c2.customer_id;
+
+<img width="588" height="153" alt="Self join" src="https://github.com/user-attachments/assets/ccd76d14-fe94-4798-a3d5-b28f6afeb6e9" />
+
 ---
 
 ## 4. Window Function Queries
@@ -83,6 +98,9 @@ These functions help us to inspect customers who generates high income for the b
     FROM sales s
     JOIN customers c ON s.customer_id = c.customer_id
     GROUP BY c.customer_name;
+
+
+<img width="1281" height="288" alt="Rank functions" src="https://github.com/user-attachments/assets/2e2aec8b-ab94-466c-abfa-b59140ca2e9f" />
 
 
 ### 4.2 Aggregate Functions
@@ -108,6 +126,9 @@ These functions help us to highlight different trends across periods of time. In
     FROM sales
     GROUP BY DATE_TRUNC('month', sale_date);
 
+
+<img width="1348" height="205" alt="Aggregate window functions" src="https://github.com/user-attachments/assets/3befedcd-fa48-40bc-bc75-3a9313ce3e06" />
+
 ### 4.3 Navigation window functions
 Functions such as LAG() and LEAD() manifests the month to month growth in revenues.
 
@@ -124,6 +145,9 @@ Functions such as LAG() and LEAD() manifests the month to month growth in revenu
         ) AS next_month_sales
     FROM sales
     GROUP BY DATE_TRUNC('month', sale_date);
+
+<img width="1026" height="193" alt="Navigation window functions" src="https://github.com/user-attachments/assets/714bf1b6-9c52-412c-a0aa-4e929161de28" />
+
 
 ### 4.4 Distribution functions
 Customers of the business in our case were divided into four quartiles, meaning depending on their level of spending.
@@ -147,6 +171,8 @@ Customers of the business in our case were divided into four quartiles, meaning 
     FROM sales s
     JOIN customers c ON s.customer_id = c.customer_id
     GROUP BY c.customer_name;
+
+<img width="1146" height="266" alt="Distribution window functions" src="https://github.com/user-attachments/assets/432817aa-bb87-483d-b27c-0eca561c0940" />
 
 
 **5. Key Insights**
