@@ -166,21 +166,22 @@ Customers of the business in our case were divided into four quartiles, meaning 
 * 2 - High mid-level spenders
 * 3 - Low mid-level spenders
 * 4 - Low-level spenders
+  
 
-    SELECT
-        c.customer_name,
-        SUM(s.total_amount) AS total_spent,
-    
-        NTILE(4) OVER (
-            ORDER BY SUM(s.total_amount) DESC
-        ) AS spending_quartile,
-    
-        CUME_DIST() OVER (
-            ORDER BY SUM(s.total_amount) DESC
-        ) AS cumulative_distribution
-    FROM sales s
-    JOIN customers c ON s.customer_id = c.customer_id
-    GROUP BY c.customer_name;
+        SELECT
+            c.customer_name,
+            SUM(s.total_amount) AS total_spent,
+        
+            NTILE(4) OVER (
+                ORDER BY SUM(s.total_amount) DESC
+            ) AS spending_quartile,
+        
+            CUME_DIST() OVER (
+                ORDER BY SUM(s.total_amount) DESC
+            ) AS cumulative_distribution
+        FROM sales s
+        JOIN customers c ON s.customer_id = c.customer_id
+        GROUP BY c.customer_name;
 
 <img width="1146" height="266" alt="Distribution window functions" src="https://github.com/user-attachments/assets/432817aa-bb87-483d-b27c-0eca561c0940" />
 
