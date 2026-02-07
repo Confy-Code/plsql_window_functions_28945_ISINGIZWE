@@ -22,8 +22,14 @@ Analyze sales data to identify top-performing products, monitor trends, segment 
 - **Regions:** `region_id`, `region_name`  
 - **Sales:** `sale_id`, `product_id`, `customer_id`, `region_id`, `sale_date`, `quantity`, `total_amount`
 
+The tables and their respective data are showcased in the folder of `Screenshots/Database Schema`
+
 ### ER Diagram
 
+
+<img width="968" height="712" alt="E-R2" src="https://github.com/user-attachments/assets/28813af7-97a9-4f3d-b4ea-68b9aa68da5d" />
+
+---
 ## 3. JOIN Queries
 
 ### 3.1 INNER JOIN:
@@ -174,6 +180,7 @@ Customers of the business in our case were divided into four quartiles, meaning 
 
 <img width="1146" height="266" alt="Distribution window functions" src="https://github.com/user-attachments/assets/432817aa-bb87-483d-b27c-0eca561c0940" />
 
+---
 
 **5. Key Insights**
 #### 5.1 Descriptive — What happened?
