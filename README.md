@@ -211,7 +211,8 @@ Customers of the business in our case were divided into four quartiles, meaning 
 - MySQL 8.0 Official Documentation – `https://dev.mysql.com/doc/`
 - PostgreSQL Window Functions Tutorial – `https://www.postgresql.org/docs/current/tutorial-window.html`
 - Oracle SQL Window Functions Guide – `Oracle Docs`
-- Business Analytics with SQL – Tutorial and Examples, DataCamp
+- Business Analytics with SQL – `FreeCode Camp`
+- Google's `Gemini AI`
 - Lecturer Eric M.'s Notes
 
 ---
