@@ -26,8 +26,9 @@ The tables and their respective data are showcased in the folder of `Screenshots
 
 ### ER Diagram
 
+![E-R 3](https://github.com/user-attachments/assets/7b7a71c2-3d2d-409b-904a-86c72658c6d6)
 
-<img width="968" height="712" alt="E-R2" src="https://github.com/user-attachments/assets/28813af7-97a9-4f3d-b4ea-68b9aa68da5d" />
+
 
 ---
 ## 3. JOIN Queries
