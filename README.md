@@ -1,4 +1,7 @@
 # Entreprise Urwibutso Industries – Sales Data Analysis
+#### Author : ISINGIZWE Jean Confiance
+#### ID : 28945
+#### Institution : Adventist University of Central Africa(AUCA)
 
 ## 1. Business Problem
 Entreprise Urwibutso Industries produces multiple food and beverage products, including AKANDI, AKARABO, URWIBUTSO, AGASHYA, AKABANGA, and AKARUSHO, sold across multiple regions in Rwanda.  
