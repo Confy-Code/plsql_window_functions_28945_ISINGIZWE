@@ -162,10 +162,10 @@ Functions such as LAG() and LEAD() manifests the month to month growth in revenu
 ### 4.4 Distribution functions
 Customers of the business in our case were divided into four quartiles, meaning depending on their level of spending.
 4 classes are:
-1 - High-level spenders
-2 - High mid-level spenders
-3 - Low mid-level spenders
-4 - Low-level spenders
+* 1 - High-level spenders
+* 2 - High mid-level spenders
+* 3 - Low mid-level spenders
+* 4 - Low-level spenders
 
     SELECT
         c.customer_name,
