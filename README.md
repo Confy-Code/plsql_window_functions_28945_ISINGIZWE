@@ -37,7 +37,8 @@ The tables and their respective data are showcased in the folder of `Screenshots
 ## 3. JOIN Queries
 
 ### 3.1 INNER JOIN:
-This retrives only valid transactions, that is to say between all three tables
+This retrives only valid transactions, that is to say between all three tables. Valid transactions are those transactions whose
+consumer(s) and sale price are clearly shown.
 
     SELECT s.sale_id, c.customer_name, p.product_name, r.region_name, s.sale_date, s.total_amount
     FROM sales s
@@ -49,7 +50,8 @@ This retrives only valid transactions, that is to say between all three tables
 
 
 ### 3.2 LEFT JOIN 
-In our case, this retrieved the customers who didn't buy anything(inactive customers)
+In our case, this retrieved the customers who didn't buy anything(inactive customers). Here we assume that these customers bought
+our products in a certain period of time BEFORE the recording of these transactions. They don't buy for us anymore
 
     SELECT c.customer_name, r.region_name
     FROM customers c
@@ -61,7 +63,8 @@ In our case, this retrieved the customers who didn't buy anything(inactive custo
 <img width="551" height="167" alt="Left join" src="https://github.com/user-attachments/assets/33498487-e89f-4eda-a63c-f654ac3cfe78" />
 
 ## 3.3 RIGHT JOIN 
-In our case, this join worked for us to retrieve those products which were not sold at all.
+In our case, this join worked for us to retrieve those products which were not sold at all. The products were there, 
+but received no appreciation because of many factors that can be related to region  they are being sold in or their sale prices.
 
     SELECT p.product_name, s.sale_id
     FROM sales s
@@ -72,7 +75,8 @@ In our case, this join worked for us to retrieve those products which were not s
 
 
 ## 3.4 FULL OUTER JOIN
-This is like the union of both Left and Right joins
+This is like the union of both Left and Right joins: means It showcases both of these two cases: Products which were
+not sold and customers who do not buy for us anymore(inactive customers).
 
     SELECT c.customer_name, p.product_name, s.sale_id
     FROM customers c
@@ -83,7 +87,8 @@ This is like the union of both Left and Right joins
 <img width="665" height="415" alt="Full outer join" src="https://github.com/user-attachments/assets/d3615c06-cb58-46e1-a3ce-817c15ec192a" />
 
 ## 3.5 SELF JOIN 
-In our case, this showed those customers who are competing for the product in the same region
+In our case, this showed those customers who are competing for the product in the same region. This competition-analysis helps
+us to identify a region the business should focus on to supply many of its products.
 
     SELECT c1.customer_name AS customer_1, c2.customer_name AS customer_2, c1.region_id
     FROM customers c1
