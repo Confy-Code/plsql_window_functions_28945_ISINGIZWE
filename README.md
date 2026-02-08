@@ -75,7 +75,7 @@ but received no appreciation because of many factors that can be related to regi
 
 
 ## 3.4 FULL OUTER JOIN
-This is like the union of both Left and Right joins: means It showcases both of these two cases: Products which were
+This is like the union of both Left and Right joins. It showcases both of these two cases: Products which were
 not sold and customers who do not buy for us anymore(inactive customers).
 
     SELECT c.customer_name, p.product_name, s.sale_id
