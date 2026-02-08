@@ -187,7 +187,7 @@ Customers of the business in our case were divided into four quartiles, meaning 
 
 ---
 
-**5. Key Insights**
+### 5. Key Insights
 #### 5.1 Descriptive — What happened?
 
 * Top products and top customers identified by region.
