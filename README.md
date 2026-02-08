@@ -61,7 +61,7 @@ In our case, this retrieved the customers who didn't buy anything(inactive custo
 <img width="551" height="167" alt="Left join" src="https://github.com/user-attachments/assets/33498487-e89f-4eda-a63c-f654ac3cfe78" />
 
 ## 3.3 RIGHT JOIN 
-In our case, this retrieved the unsold products were shown by this
+In our case, this join worked for us to retrieve those products which were not sold at all.
 
     SELECT p.product_name, s.sale_id
     FROM sales s
