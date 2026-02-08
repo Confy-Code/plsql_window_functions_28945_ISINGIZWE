@@ -37,7 +37,7 @@ The tables and their respective data are showcased in the folder of `Screenshots
 ## 3. JOIN Queries
 
 ### 3.1 INNER JOIN:
-This retrives only valid transactions, that is to say between all three tables. Valid transactions are those transactions whose
+This retrives only valid transactions. Valid transactions are those transactions whose
 consumer(s) and sale price are clearly shown.
 
     SELECT s.sale_id, c.customer_name, p.product_name, r.region_name, s.sale_date, s.total_amount
